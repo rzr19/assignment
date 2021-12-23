@@ -37,12 +37,12 @@ resource "aws_default_route_table" "route_table" {
   }
 }
 
-resource "aws_key_pair" "xxxkey" {
-  key_name   = "xxxkey"
+resource "aws_key_pair" "key" {
+  key_name   = "${var.name}_key"
   public_key = file("key.pub")
 }
 
-resource "aws_security_group" "xxxsg" {
+resource "aws_security_group" "sg" {
   name        = "${var.name}_sg"
   description = "fw"
   vpc_id = aws_vpc.vpc.id
@@ -78,7 +78,7 @@ resource "aws_security_group" "xxxsg" {
   }
 }
 
-data "aws_ami" "xxxami" {
+data "aws_ami" "ami" {
   owners      = ["self"]
   most_recent = true
   name_regex  = "^xxxami.*"
@@ -89,8 +89,8 @@ data "aws_ami" "xxxami" {
 }
 
 resource "aws_instance" "xxx" {
-  key_name      = aws_key_pair.xxxkey.key_name
-  ami           = data.aws_ami.xxxami.id
+  key_name      = aws_key_pair.key.key_name
+  ami           = data.aws_ami.ami.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet.id
   user_data     = file("cloud_init.sh")
@@ -98,7 +98,7 @@ resource "aws_instance" "xxx" {
     Name = "TestXXX"
   }
   vpc_security_group_ids = [
-    aws_security_group.xxxsg.id
+    aws_security_group.sg.id
   ]
   provisioner "remote-exec" {
     inline = [
