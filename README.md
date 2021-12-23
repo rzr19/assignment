@@ -1,4 +1,9 @@
 # xxx
+# This was tested with:
+# ubuntu 20.04 LTS
+# packer v1.7.8
+# terraform v1.1.2
+
 
 Step 0.
 Define AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
@@ -28,4 +33,6 @@ curl http://${pip}
 
 Step 4.
 Debug via ssh:
+```
 ssh ubuntu@${pip} -i key
+```
