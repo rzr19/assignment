@@ -122,3 +122,13 @@ resource "aws_eip" "eip" {
   vpc      = true
   instance = aws_instance.xxx.id
 }
+
+output "curl_test_webservice" {
+  description = "Use this to test the web service"
+  value       = "curl http://${aws_eip.eip.public_ip}"
+}
+
+output "ec2_instance_id" {
+  description = "Id of the XXX instance."
+  value       = aws_instance.xxx.id
+}
