@@ -1,8 +1,8 @@
 # xxx
-# This was tested with:
-# ubuntu 20.04 LTS
-# packer v1.7.8
-# terraform v1.1.2
+This was tested with:
+ubuntu 20.04 LTS
+packer v1.7.8
+terraform v1.1.2
 
 
 Step 0.
